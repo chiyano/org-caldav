@@ -101,6 +101,9 @@ buffer).")
 (defvar org-caldav-debug-buffer "*org-caldav-debug*"
   "Name of the debug buffer.")
 
+(defvar org-caldav-org-time-stamp-prefix nil
+  "Prefix of org time stamp. e.g. \"DEADLINE: \"")
+
 ;; Internal variables
 
 (defvar org-caldav-event-list nil
@@ -842,7 +845,7 @@ DATE is given as european date (DD MM YYYY)."
 	 (year (nth 2 sdate))
 	 (internaltime (encode-time 0 minutes hours day month year)))
     (insert
-     (concat "<"
+     (concat org-caldav-org-time-stamp-prefix "<"
 	     (if time
 		 (format-time-string "%Y-%m-%d %a %H:%M" internaltime)
 	       (format-time-string "%Y-%m-%d %a" internaltime))
